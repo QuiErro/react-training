@@ -9,7 +9,7 @@ module.exports = {
     },
     plugins: [
         new htmlWebpackPlugin({
-            template: path.join(__dirname, './index.html'),
+            template: path.join(__dirname, './src/index.html'),
             filename: 'index.html'
         })
     ],
