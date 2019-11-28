@@ -21,5 +21,8 @@ module.exports = {
             {test: /\.(eot|svg|ttf|woff|woff2|png)\w*/, use: 'file-loader'}
         ]
     },
+    devServer: {
+        historyApiFallback: true,
+    },
     mode: 'development' 
 };
