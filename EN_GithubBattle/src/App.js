@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import styles from '@/App.less'
 
-import NavBar from './components/NavBar';
-import Popular from './pages/Popular/Popular';
-import Battle from './pages/Battle/Battle';
+import NavBar from '@/components/NavBar';
+import Popular from '@/pages/Popular/Popular';
+import BattleRouter from '@/pages/Battle/router';
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super();
 
     this.state = {
       bgStyle: 'light', // 白天/黑夜 模式
+      currentPage: window.location.pathname === '/battle' ? 'battle' : 'popular'
     };
   }
 
@@ -21,18 +23,17 @@ export default class App extends Component {
     }
 
     render() {
-      const { bgStyle } = this.state;
-      const appStyle = { width: '100%', height: 'auto' };
+      const { bgStyle, currentPage } = this.state;
 
       return (
         <Router>
-          <div id="app" style={bgStyle === 'dark' ? { ...appStyle, background: '#1c2022' } : appStyle}>
-            <div id="container" style={{ margin: '0 auto', padding: '50px 0 0', width: '1200px' }}>
-              <NavBar bgStyle={bgStyle} switchBackground={this.switchBackground} />
-              <div id="layOut" style={{ marginTop: '30px', width: '100%' }}>
+          <div id={styles.app} className={bgStyle === 'dark' ? styles.dark : ''}>
+            <div id={styles.container}>
+              <NavBar bgStyle={bgStyle} currentPage={currentPage} switchBackground={this.switchBackground} />
+              <div id={styles.layOut}>
                 <Switch>
                   <Route exact path="/" render={() => <Popular bgStyle={bgStyle} />} />
-                  <Route path="/battle" render={() => <Battle bgStyle={bgStyle} />} />
+                  <Route path="/battle" render={() => <BattleRouter bgStyle={bgStyle} />} />
                 </Switch>
               </div>
             </div>
@@ -41,3 +42,5 @@ export default class App extends Component {
       );
     }
 }
+
+export default App;

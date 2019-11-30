@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import styles from './Popular.less';
 
-import Header from '../../components/Header';
+import Header from '@/components/Header';
 import Content from './children/Content';
 
 class Popular extends Component {
@@ -105,7 +106,7 @@ class Popular extends Component {
     } = this.state;
 
     return (
-      <div style={{ margin: '50px auto', width: '1200px' }}>
+      <div id={styles.popular}>
         <Header
           bgStyle={bgStyle}
           currentLab={currentLab}

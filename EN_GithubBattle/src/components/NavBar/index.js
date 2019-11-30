@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import styles from './NavBar.less'
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentPage: 'popular',
+      currentPage: props.currentPage || 'popular',
     };
   }
 
@@ -22,21 +23,17 @@ class NavBar extends Component {
       const { bgStyle, switchBackground } = this.props;
       const { currentPage } = this.state;
       const bgSwitch = bgStyle === 'light' ? 'dark' : 'light';
-      const linkStyle = { fontSize: '18px', fontWeight: 'bold', color: bgStyle === 'light' ? '#000' : '#fff' };
 
       return (
-        <div id="navBar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div id={styles.navBar}>
           <div id="barContent">
-            <Link style={currentPage === 'popular' ? { ...linkStyle, marginRight: '10px', color: 'rgb(187, 46, 31)' } : { ...linkStyle, marginRight: '10px' }} to="/" onClick={() => this.menuClick('popular')}>Popular</Link>
-            <Link style={currentPage === 'battle' ? { ...linkStyle, color: 'rgb(187, 46, 31)' } : { ...linkStyle }} to="/battle" onClick={() => this.menuClick('battle')}>Battle</Link>
+            <Link className={`${styles.link} ${bgStyle === 'light' ? '' : styles['link-dark']} ${currentPage === 'popular' ? styles['link-active'] : ''}`} to="/" onClick={() => this.menuClick('popular')}>Popular</Link>
+            <Link className={`${styles.link} ${bgStyle === 'light' ? '' : styles['link-dark']} ${currentPage === 'battle' ? styles['link-active'] : ''}`} to="/battle" onClick={() => this.menuClick('battle')}>Battle</Link>
           </div>
           <div id="bgSwitch">
             <button
-              className="btn-bgcolor"
+              className={styles['btn-bgcolor']}
               type="button"
-              style={{
-                fontSize: '30px', background: 'transparent', outline: 'none', border: 'none', cursor: 'pointer',
-              }}
               onClick={() => switchBackground(bgSwitch)}
             >
               { bgStyle === 'light' ? '🔦' : '💡' }

@@ -1,26 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import styles from './Header.less'
 
 class Header extends Component {
   render() {
     const {
       currentLab, labCategory, selectLabCategory, bgStyle,
     } = this.props;
-    const commonStyle = {
-      margin: '0 10px', background: 'transparent', border: 'none', outline: 'none', color: bgStyle === 'light' ? '#000' : '#fff', fontSize: '20px', fontWeight: 'bold', cursor: 'pointer',
-    };
-    const activeStyle = { ...commonStyle, color: 'rgb(187, 46, 31)' };
 
     return (
-      <div style={{
-        width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}
-      >
+      <div className={styles['btn-content']}>
         {
                     labCategory.map((item, key) => (
                       <button
                         type="button"
                         key={key}
-                        style={key === currentLab ? activeStyle : commonStyle}
+                        className={`${styles['btn-labs']} ${bgStyle === 'light' ? '' : styles.dark} ${key === currentLab ? styles.active : ''}`}
                         onClick={() => selectLabCategory(item)}
                       >
                         {item}
