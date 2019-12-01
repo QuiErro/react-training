@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import styles from './Result.less'
 import Card from './children/Card'
+import config from '@/config'
 
 class Result extends Component {
   constructor(props){
@@ -62,7 +63,7 @@ class Result extends Component {
                   <Card title='Winner' bgStyle={bgStyle} info={winner} />
                   <Card title='Loser' bgStyle={bgStyle} info={loser} />
                 </div>
-                <Link className={styles['btn-link']} to="/battle">Reset</Link>
+                <Link className={styles['btn-link']} to={`${config.BASE_URL}/battle`}>Reset</Link>
               </div>
             ) : (
               <img

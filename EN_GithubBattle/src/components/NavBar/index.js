@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './NavBar.less'
+import config from '@/config'
 
 class NavBar extends Component {
   constructor(props) {
@@ -27,8 +28,8 @@ class NavBar extends Component {
       return (
         <div id={styles.navBar}>
           <div id="barContent">
-            <Link className={`${styles.link} ${bgStyle === 'light' ? '' : styles['link-dark']} ${currentPage === 'popular' ? styles['link-active'] : ''}`} to="/" onClick={() => this.menuClick('popular')}>Popular</Link>
-            <Link className={`${styles.link} ${bgStyle === 'light' ? '' : styles['link-dark']} ${currentPage === 'battle' ? styles['link-active'] : ''}`} to="/battle" onClick={() => this.menuClick('battle')}>Battle</Link>
+            <Link className={`${styles.link} ${bgStyle === 'light' ? '' : styles['link-dark']} ${currentPage === 'popular' ? styles['link-active'] : ''}`} to={`${config.BASE_URL}/`} onClick={() => this.menuClick('popular')}>Popular</Link>
+            <Link className={`${styles.link} ${bgStyle === 'light' ? '' : styles['link-dark']} ${currentPage === 'battle' ? styles['link-active'] : ''}`} to={`${config.BASE_URL}/battle`} onClick={() => this.menuClick('battle')}>Battle</Link>
           </div>
           <div id="bgSwitch">
             <button

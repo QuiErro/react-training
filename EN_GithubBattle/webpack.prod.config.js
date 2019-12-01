@@ -3,6 +3,8 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = function(env, argv){
     const isEnvDevelopment = argv.mode === 'development' || !argv.mode;
@@ -16,13 +18,27 @@ module.exports = function(env, argv){
             path.join(__dirname, './src/index.js')
         ],
         output: {
-            filename: 'bundle.js',
+            filename: "[name].[contenthash:8].js",
             path: path.resolve(__dirname, 'dist')
         },
         plugins: [
             new htmlWebpackPlugin({
+                title: 'Github热门项目',
+                favicon: 'public/favicon.ico',
                 template: path.join(__dirname, './public/index.html'),
-                filename: 'index.html'
+                filename: 'index.html',
+                minify: {
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    removeRedundantAttributes: true,
+                    useShortDoctype: true,
+                    removeEmptyAttributes: true,
+                    removeStyleLinkTypeAttributes: true,
+                    keepClosingSlash: true,
+                    minifyJS: true,
+                    minifyCSS: true,
+                    minifyURLs: true,
+                }
             }),
             new MiniCssExtractPlugin({
                 filename: '[name].[contenthash:8].css',
@@ -53,6 +69,11 @@ module.exports = function(env, argv){
             }
         },
         optimization: {
+            minimize: true,
+            minimizer: [
+                new TerserPlugin(),
+                new OptimizeCSSAssetsPlugin()
+            ],
             splitChunks: {
                 chunks: 'all',
                 name: true,

@@ -27,12 +27,12 @@ class Card extends Component {
             src={item.owner.avatar_url || 'https://img.zcool.cn/community/01136858d4d266a801219c7766cc7f.gif'}
             alt=""
           />
-          <h2><a href={item.owner.html_url} className={styles['html-url']}>{item.owner.login}</a></h2>
+          <h2><a href={item.owner.html_url} className={`${styles['html-url']} ${bgStyle === 'light' ? '' : styles['text-dark']}`}>{item.owner.login}</a></h2>
           <ul className={styles.intro}>
             <li className={styles['intro-item']}>
               <div className={styles['intro-item-wrap']}>
                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" color="rgb(255, 191, 116)" size="22" height="22" width="22" className={styles['intro-item-svg']}><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z" /></svg>
-                <a href={item.owner.html_url} className={styles['intro-item-link']}>{item.owner.login}</a>
+                <a href={item.owner.html_url} className={`${styles['intro-item-link']} ${bgStyle === 'light' ? '' : styles['text-dark']}`}>{item.owner.login}</a>
               </div>
             </li>
             <li className={styles['intro-item']}>

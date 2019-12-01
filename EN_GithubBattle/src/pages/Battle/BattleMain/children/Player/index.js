@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import styles from './Player.less'
+import config from '@/config'
 
 class Player extends Component {
   constructor(props){
@@ -124,7 +125,7 @@ class Player extends Component {
         </div>
         {
             resultOne.node_id && resultTwo.node_id ? (
-              <Link className={styles['btn-link']} to={`/battle/results?playerOne=${playerOne}&playerTwo=${playerTwo}`}>Battle</Link>
+              <Link className={styles['btn-link']} to={`${config.BASE_URL}/battle/results?playerOne=${playerOne}&playerTwo=${playerTwo}`}>Battle</Link>
             ) : ''
           }
       </div>

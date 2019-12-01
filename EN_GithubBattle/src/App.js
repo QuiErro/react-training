@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import styles from '@/App.less'
 
+import config from './config';
 import NavBar from '@/components/NavBar';
 import Popular from '@/pages/Popular/Popular';
 import BattleRouter from '@/pages/Battle/router';
@@ -32,8 +33,9 @@ class App extends Component {
               <NavBar bgStyle={bgStyle} currentPage={currentPage} switchBackground={this.switchBackground} />
               <div id={styles.layOut}>
                 <Switch>
-                  <Route exact path="/" render={() => <Popular bgStyle={bgStyle} />} />
-                  <Route path="/battle" render={() => <BattleRouter bgStyle={bgStyle} />} />
+                  <Route exact path={`${config.BASE_URL}/`} render={() => <Popular bgStyle={bgStyle} />} />
+                  <Route path={`${config.BASE_URL}/battle`} render={() => <BattleRouter bgStyle={bgStyle} />} />
+                  <Redirect to={`${config.BASE_URL}/`}/>
                 </Switch>
               </div>
             </div>
