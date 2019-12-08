@@ -16,7 +16,8 @@ class Result extends Component {
   }
 
   async componentDidMount(){
-    const arr = window.location.search.slice(1).split('&');
+    // const arr = window.location.search.slice(1).split('&');
+	const arr = window.location.hash.split('?')[1].split('&');
     let playerOne;
     let playerTwo;
     arr.forEach(item => {

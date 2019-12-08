@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import styles from '@/App.less'
 
 import config from './config';
@@ -10,7 +10,6 @@ import BattleRouter from '@/pages/Battle/router';
 class App extends Component {
   constructor() {
     super();
-
     this.state = {
       bgStyle: 'light', // 白天/黑夜 模式
       currentPage: window.location.pathname === '/battle' ? 'battle' : 'popular'
