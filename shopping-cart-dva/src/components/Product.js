@@ -3,12 +3,14 @@ import { connect } from 'dva';
 import styles from './Product.css'
 import { Card, message } from 'antd';
 
+const context = require.context("./../assets/images/", false, /\.(jpg)$/);
+
 class Product extends Component{
   constructor(props){
     super(props);
 
     this.state = {
-      isHover: false
+      isHover: false,
     };
   }
 
@@ -45,7 +47,7 @@ class Product extends Component{
           className={styles.card}
           hoverable={true}
           style={{ width: 240 }}
-          cover={<img src={product.bigImage} alt="Images..." />}
+          cover={<img src={context(product.bgImage)} alt="Images..." />}
         >
           <div className={styles.intro}>
             <p className={styles.desc}>{product.title}</p>

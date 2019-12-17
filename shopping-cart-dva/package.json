@@ -5,8 +5,7 @@
     "server": "nodemon server/app",
     "build": "roadhog build",
     "lint": "eslint --ext .js src test",
-    "precommit": "npm run lint",
-    "dev": "concurrently \"yarn run server\" \"yarn run start\""
+    "precommit": "npm run lint"
   },
   "dependencies": {
     "antd": "^3.26.2",

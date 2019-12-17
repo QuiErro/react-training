@@ -3,6 +3,8 @@ import { connect } from 'dva';
 import { Modal, InputNumber, Checkbox, Icon } from 'antd';
 import styles from './DrawerProduct.css';
 
+const context = require.context("./../assets/images/", false, /\.(jpg)$/);
+
 class DrawerProduct extends Component {
 
   constructor(props){
@@ -85,7 +87,7 @@ class DrawerProduct extends Component {
             <Checkbox onClick={() => this.isSelected(product.id)} checked={checked} />
           </div>
           <div className={`${styles['item-box']} ${styles.image}`}>
-            <img src={product.smallImage} style={{width: '50px', height: '60px', cursor: 'pointer'}} alt=""/>
+            <img src={context(product.smImage)} style={{width: '50px', height: '60px', cursor: 'pointer'}} alt=""/>
           </div>
           <div className={`${styles['item-box']} ${styles.info}`}>{product.style}</div>
           <div className={`${styles['item-box']} ${styles.amount}`}>

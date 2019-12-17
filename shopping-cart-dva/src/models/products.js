@@ -88,7 +88,7 @@ export default {
   },
   effects: {
     *fetch({}, { call, put }) {
-      const { data } = yield call(productsService.fetch);
+      const { data } = yield call(productsService.fetchProducts);
       yield put({
         type: 'save',
         payload: { data: data.products },
@@ -99,7 +99,9 @@ export default {
     setup({ dispatch, history }) {
       return history.listen(({ pathname }) => {
         if (pathname === '/products') {
-          dispatch({ type: 'fetch' });
+          //dispatch({ type: 'fetch' });
+		  let data = require('../assets/products.json');
+		  dispatch({type: 'save', payload: { data: data.products }});
           dispatch({ type: 'getCart' });
         }
       });
